@@ -70,6 +70,7 @@ public class BottomPanel extends JPanel {
 		
 		/* This is used in the MouseListener for this button */
 		private RulePrompt rulePrompt;
+		private boolean mousePressed = false;
 
 		/* Constructor for the RestartButton.  The parameter is used to extract the 
 		 * rule number that the user entered at the moment when the restart button 
@@ -88,61 +89,11 @@ public class BottomPanel extends JPanel {
 				 */
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					int rule = 0;
-					/* The rule entered could either be 3, 2, or 1 digit(s), hence 
-					 * the three cases.
+					/* Using mousePressed() and mouseReleased() instead so that
+					 * it still works if the mouse moves slightly in between 
+					 * pressing and releasing, in which case it's technically not a 
+					 * "mouse click"
 					 */
-					try {
-						String input = rulePrompt.getText(27, 3).replaceAll(" ", "");
-						rule = Integer.valueOf(input);
-					} catch (BadLocationException | NumberFormatException e1) {
-						try {
-							String input = rulePrompt.getText(27, 2).replaceAll(" ", "");
-							rule = Integer.valueOf(input);
-						} catch (BadLocationException | NumberFormatException e2) { 
-							try {
-								String input = rulePrompt.getText(27, 1).replaceAll(" ", "");
-								rule = Integer.valueOf(input);
-							} catch (BadLocationException | NumberFormatException e3) {
-								rule = 30;
-
-							}
-
-						}
-
-					}
-					/* Now use the extracted rule to update the grid */
-					try {
-						gridPanel.grid.updateRule(new CARowMaker(rule));
-					} catch (IllegalArgumentException e) {
-						gridPanel.grid.updateRule(new CARowMaker(30));
-						rulePrompt.setText("Enter Rule Number (0-255): 30");
-					}
-					
-					/* use the selection, updated by the ColorPicker, to set the color
-					 * theme as needed.
-					 */
-					switch(colorThemeSelected) {
-					case "Lilac (Default)":
-						gridPanel.setColorTheme(0);
-						break;
-					case "September":
-						gridPanel.setColorTheme(1);
-						break;
-					case "Sunset":
-						gridPanel.setColorTheme(2);
-						break;
-					case "Cherry Blossoms":
-						gridPanel.setColorTheme(3);
-						break;
-					case "Beach":
-						gridPanel.setColorTheme(4);
-						break;
-					case "Neon":
-						gridPanel.setColorTheme(5);
-						break;
-					}
-
 
 				}
 
@@ -160,14 +111,70 @@ public class BottomPanel extends JPanel {
 
 				@Override
 				public void mousePressed(MouseEvent arg0) {
-					// TODO Auto-generated method stub
+					mousePressed = true;
 
 				}
 
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
+					if (mousePressed) {
+						int rule = 0;
+						/* The rule entered could either be 3, 2, or 1 digit(s), hence 
+						 * the three cases.
+						 */
+						try {
+							String input = rulePrompt.getText(27, 3).replaceAll(" ", "");
+							rule = Integer.valueOf(input);
+						} catch (BadLocationException | NumberFormatException e1) {
+							try {
+								String input = rulePrompt.getText(27, 2).replaceAll(" ", "");
+								rule = Integer.valueOf(input);
+							} catch (BadLocationException | NumberFormatException e2) { 
+								try {
+									String input = rulePrompt.getText(27, 1).replaceAll(" ", "");
+									rule = Integer.valueOf(input);
+								} catch (BadLocationException | NumberFormatException e3) {
+									rule = 30;
 
+								}
+
+							}
+
+						}
+						/* Now use the extracted rule to update the grid */
+						try {
+							gridPanel.grid.updateRule(new CARowMaker(rule));
+						} catch (IllegalArgumentException e5) {
+							gridPanel.grid.updateRule(new CARowMaker(30));
+							rulePrompt.setText("Enter Rule Number (0-255): 30");
+						}
+						
+						/* use the selection, updated by the ColorPicker, to set the color
+						 * theme as needed.
+						 */
+						switch(colorThemeSelected) {
+						case "Lilac (Default)":
+							gridPanel.setColorTheme(0);
+							break;
+						case "September":
+							gridPanel.setColorTheme(1);
+							break;
+						case "Sunset":
+							gridPanel.setColorTheme(2);
+							break;
+						case "Cherry Blossoms":
+							gridPanel.setColorTheme(3);
+							break;
+						case "Beach":
+							gridPanel.setColorTheme(4);
+							break;
+						case "Neon":
+							gridPanel.setColorTheme(5);
+							break;
+						}
+						mousePressed = false;
+					}
+					
 				}
 
 			});
