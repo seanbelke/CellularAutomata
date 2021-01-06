@@ -10,8 +10,8 @@ rules.  These rules all concern a cell's "neighbors," which are the 8 cells that
 
     1. If a cell has more than 3, or fewer than 2, living neighbors, it will be dead in the next iteration of the game. 
     2. If a cell has exactly 3 living neighbors, it will be alive in the next iteration of the game. 
-    3. If a cell has exactly 2 living neighbors, its state will not change from this iteration of the game to the next.  In other words, it will be alive if it was alive already,
-    and it will be dead if it was dead already.  
+    3. If a cell has exactly 2 living neighbors, its state will not change from this iteration of the game to the next.  
+    In other words, it will be alive if it was alive already, and it will be dead if it was dead already.  
 
 Conway's Game of Life leads to many interesting short-term interactions between cells as well as some cool long-term patterns.
 
