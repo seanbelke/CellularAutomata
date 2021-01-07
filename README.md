@@ -41,4 +41,4 @@ button to see the new input being fed into Game of Life, using the new color the
 ## Other Notes
 
 This has only been tested on a Windows PC, and since the project uses the System Look And Feel (The Java Cross-Platform L&F doesn't look as good) it's possible that there
-will be some slight misalignments when running this on a Mac or Linux machine, although I don't know for sure.  On Windows, everything should line up as intended.  
+will be some slight misalignments when running this on a Mac or Linux machine.  On Windows, everything should line up as intended.  
