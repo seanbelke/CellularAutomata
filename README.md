@@ -50,7 +50,7 @@ will be some slight misalignments when running this on a Mac or Linux machine.  
 
 Also, note that some of the rules the user may choose to select will appear to do nothing.  For example, it may only show a single line moving up the bottom portion of the
 screen.  This is because the first row of input is always a single living cell, so if the Rule does not allow for any cell to be alive if it only has one living neighbor, the 
-input will not expand in the same way that Rule 30 will, for example.  
+input will not expand in the same way that Rule 30 will, for example.  Some interesting rules to try are Rule 30, 110, 101, and 129.
 
 ## Build Instructions
 
