@@ -38,7 +38,20 @@ In addition to being able to change the color theme used by the animation, the u
 number (refer to the explanation above about what each number means).  After selecting a color theme and a rule number, the user should press the "Restart/Update Animation"
 button to see the new input being fed into Game of Life, using the new color theme.  
 
+## Default Settings and User Interaction
+
+By default, the program uses Rule 30 as input, and the color theme used is called "Lilac."  The user can change either of these settings once the program has begun running.
+If the user enters an invalid rule, such as a negative number or a positive number greater than 255, Rule 30 will be used automatically instead.  
+
 ## Other Notes
 
 This has only been tested on a Windows PC, and since the project uses the System Look And Feel (The Java Cross-Platform L&F doesn't look as good) it's possible that there
 will be some slight misalignments when running this on a Mac or Linux machine.  On Windows, everything should line up as intended.  
+
+Also, note that some of the rules the user may choose to select will appear to do nothing.  For example, it may only show a single line moving up the bottom portion of the
+screen.  This is because the first row of input is always a single living cell, so if the Rule does not allow for any cell to be alive if it only has one living neighbor, the 
+input will not expand in the same way that Rule 30 will, for example.  
+
+## Build Instructions
+
+Start the program in the main method in GuiDriver.java
