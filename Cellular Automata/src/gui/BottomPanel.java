@@ -71,6 +71,7 @@ public class BottomPanel extends JPanel {
 		/* This is used in the MouseListener for this button */
 		private RulePrompt rulePrompt;
 		private boolean mousePressed = false;
+		private boolean mousePressedThenExited = false;
 
 		/* Constructor for the RestartButton.  The parameter is used to extract the 
 		 * rule number that the user entered at the moment when the restart button 
@@ -84,6 +85,18 @@ public class BottomPanel extends JPanel {
 			setFont(BOTTOM_PANEL_FONT);
 			addMouseListener(new MouseListener() {
 
+				/* The boolean variables mousePressed and mousePressedThenExited are
+				 * being used to make the button act like buttons usually do.  That is,
+				 * if the button is clicked directly, it will restart the animation.  
+				 * If the mouse is pressed, then moved slightly, but released 
+				 * while it is still on the button, it will also restart the animation.
+				 * If the mouse is pressed, moved outside of the region of the button,
+				 * then moved back inside the region of the button and released, it will
+				 * restart the animation.  However, if the mouse is pressed, moved outside
+				 * of the region of the button, and then released, it will not do anything.
+				 */
+				
+				
 				/* Restarts the animation when the mouse is clicked.  This must
 				 * determine which rule number was entered first.
 				 */
@@ -99,13 +112,19 @@ public class BottomPanel extends JPanel {
 
 				@Override
 				public void mouseEntered(MouseEvent arg0) {
-					// TODO Auto-generated method stub
+					if (mousePressedThenExited) {
+						mousePressedThenExited = false;
+						mousePressed = true;
+					}
 
 				}
 
 				@Override
 				public void mouseExited(MouseEvent arg0) {
-					// TODO Auto-generated method stub
+					if (mousePressed) {
+						mousePressedThenExited = true;
+						mousePressed = false;
+					}
 
 				}
 
