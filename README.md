@@ -52,9 +52,6 @@ Also, note that some of the rules the user may choose to select will appear to d
 screen.  This is because the first row of input is always a single living cell, so if the Rule does not allow for any cell to be alive if it only has one living neighbor, the 
 input will not expand in the same way that Rule 30 will, for example.  Some interesting rules to try are Rule 30, 110, 101, and 129.
 
-The first commit says the author and committer are "Jim" and "Jim."  That's the username of the computer used when committing the project initially, but all code was written 
-by Sean Belke.
-
 ## Build Instructions
 
 Start the program in the main method in GuiDriver.java
